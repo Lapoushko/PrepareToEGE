@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -5,6 +6,8 @@ using UnityEngine;
 /// </summary>
 public class ChangeCourse : MonoBehaviour
 {
+    public static Action onClickMusic;
+
     /// <summary>
     /// Смена
     /// </summary>
@@ -12,5 +15,6 @@ public class ChangeCourse : MonoBehaviour
     public void OnClickChangeCourse(string newCourse)
     {
         Counter.instance.ChangeCourse(newCourse);
+        onClickMusic?.Invoke();
     }
 }

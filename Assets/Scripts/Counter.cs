@@ -98,7 +98,7 @@ public class Counter : MonoBehaviour
     {
         if (!courseDict.ContainsKey(name))
         {
-            courseDict[name] = new StateCourse(false,name,100, 20, 0);
+            courseDict[name] = new StateCourse(false,name,50, 20, 0);
         }
     }
 }

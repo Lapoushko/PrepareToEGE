@@ -13,9 +13,10 @@ public class ClickAttribute : MonoBehaviour
     [SerializeField] private float motivation;
     [SerializeField] private float progress;
 
-    [SerializeField] private string nameSound;
     [SerializeField] private GameObject backgroundOriginal;
     [SerializeField] private Sprite backgroundImage;
+
+    public static Action onClickMusic;
 
     /// <summary>
     /// Смена предмета
@@ -25,9 +26,9 @@ public class ClickAttribute : MonoBehaviour
         StateCourse newState = new StateCourse(
             true, null, stamina, motivation, progress);
         Counter.instance.AddCount(newState);
-        AudioManager.instance.Play(nameSound);
-        backgroundOriginal.gameObject.GetComponent<SpriteRenderer>().sprite =
+        backgroundOriginal.GetComponent<SpriteRenderer>().sprite =
             backgroundImage;
+        onClickMusic?.Invoke();
     }
 
     private void Start()
@@ -54,5 +55,18 @@ public class ClickAttribute : MonoBehaviour
             gameObject.GetComponent<Button>().interactable = true;
             CounterDay.instance.EventUpdateDay -= Activate;
         }
+    }
+
+    public float GetStamina()
+    {
+        return stamina;
+    }
+    public float GetMotivation()
+    {
+        return motivation;
+    }
+    public float GetProgress()
+    {
+        return progress;
     }
 }
