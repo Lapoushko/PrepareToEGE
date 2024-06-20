@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using YG;
 
 /// <summary>
 /// Счётчик очков Singleton
@@ -9,15 +11,17 @@ using UnityEngine;
 public class Counter : MonoBehaviour
 {
     public static Counter instance;
-    private CalculatorCoef calculator;
 
     private Dictionary<string, StateCourse> courseDict;
     private string nameCourse = "Math";
 
     public event Action<string> CourseChanged;
     public event Action IsAddCount;
+
+    public event Action<Dictionary<string, StateCourse>> IsAddCountDictionary;
+
     void Awake()
-    {
+    {       
         if (instance == null)
         {
             instance = this;
@@ -27,13 +31,7 @@ public class Counter : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        DontDestroyOnLoad(gameObject);
-
-        if (courseDict == null)
-        {
-            courseDict = new Dictionary<string, StateCourse>();
-        }
-        calculator = new CalculatorCoef();
+        courseDict = new Dictionary<string, StateCourse> ();
     }
 
     /// <summary>
@@ -65,9 +63,10 @@ public class Counter : MonoBehaviour
             stamina,
             motivation,
             progress);
-
+        IsAddCountDictionary?.Invoke(courseDict);
         IsAddCount?.Invoke();
         CourseChanged?.Invoke(nameCourse);
+        SaveDataImpl.instance.Save(courseDict);
     }
     /// <summary>
     /// Смена курса
@@ -88,6 +87,15 @@ public class Counter : MonoBehaviour
     {
         CheckExistCourse(name);
         return courseDict[name];
+    }
+
+    /// <summary>
+    /// Геттер всех курсов
+    /// </summary>
+    /// <returns>все курсы</returns>
+    public Dictionary<string, StateCourse> GetCourses()
+    {
+        return courseDict;
     }
 
     /// <summary>

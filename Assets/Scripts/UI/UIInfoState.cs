@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
+using YG;
 /// <summary>
 /// UI Курса
 /// </summary>

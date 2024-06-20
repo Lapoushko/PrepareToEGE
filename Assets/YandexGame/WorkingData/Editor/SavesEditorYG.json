@@ -1,0 +1,16 @@
+{
+    "idSave": 1286,
+    "isFirstSession": false,
+    "language": "en",
+    "promptDone": false,
+    "money": 1,
+    "newPlayerName": "Hello!",
+    "openLevels": [
+        false,
+        true,
+        false
+    ],
+    "courseDict": 45,
+    "countDay": 91,
+    "maxScore": 0.0
+}

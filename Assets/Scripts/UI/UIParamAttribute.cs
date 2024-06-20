@@ -20,46 +20,56 @@ public class UIParamAttribute : MonoBehaviour
     /// <returns>Значение</returns>
     private float GetValue()
     {
-        switch (type)
+        return type switch
         {
-            case "Stamina":
-                return clickAttribute.GetStamina();
-            case "Motivation":
-                return clickAttribute.GetMotivation();
-            case "Progress":
-                return clickAttribute.GetProgress();
-            default: return 0;
-        }
+            "Stamina" => clickAttribute.GetStamina(),
+            "Motivation" => clickAttribute.GetMotivation(),
+            "Progress" => clickAttribute.GetProgress(),
+            _ => 0,
+        };
     }
     /// <summary>
     /// Установить метрику
     /// </summary>
     private void SetMetrick(float value)
     {
-        if (value >= 0 && value < 2)
-        {
-            imageUp[0].SetActive(true);
-        }
-        else if (value >= 2 && value < 3)
-        {
-            imageUp[1].SetActive(true);
-        }
-        else if (value >= 3)
-        {
-            imageUp[2].SetActive(true);
-        }
+        /// коэф считается как (3 - максимальное значение) / множитель.
+        /// вычитаем 0.001f так как иначе при 3 получается 0.(3
 
-        if (value < 0 && value > -2)
+        float coef = ((5f / Multiplier.startDelimiter)) / 5f ;
+        if (value != 0 || value >= 5 * coef || value <= 5 * -coef)
         {
-            imageDown[0].SetActive(true);
+            if (value > 0)
+            {
+                for (int i = 0; i < imageUp.Length; i++)
+                {
+                    if ((value > i * coef) && (value <= (i + 1) * coef))
+                    {
+                        imageUp[i].SetActive(true);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < imageUp.Length; i++)
+                {
+                    if ((value < i * -coef) && (value >= (i + 1) * -coef))
+                    {
+                        imageDown[i].SetActive(true);
+                        break;
+                    }
+                }
+            }
         }
-        else if (value <= -2 && value > -3)
+        if (value > 5 * coef)
         {
-            imageDown[1].SetActive(true);
+            imageUp[4].SetActive(true);
         }
-        else if (value <= -3)
+        else if (value < 5 * -coef)
         {
-            imageDown[2].SetActive(true);
+            imageDown[4].SetActive(true);
         }
     }
+
 }
