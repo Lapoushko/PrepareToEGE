@@ -1,7 +1,7 @@
 {
-    "idSave": 1286,
+    "idSave": 6461,
     "isFirstSession": false,
-    "language": "en",
+    "language": "ru",
     "promptDone": false,
     "money": 1,
     "newPlayerName": "Hello!",
@@ -10,7 +10,15 @@
         true,
         false
     ],
-    "courseDict": 45,
-    "countDay": 91,
+    "mathDataStamina": 47.0,
+    "mathDataMotivation": 17.75,
+    "mathDataProgress": 0.43312498927116396,
+    "russianDataStamina": 50.0,
+    "russianDataMotivation": 20.0,
+    "russianDataProgress": 0.0,
+    "infoDataStamina": 50.0,
+    "infoDataMotivation": 20.0,
+    "infoDataProgress": 0.0,
+    "countDay": 1,
     "maxScore": 0.0
 }

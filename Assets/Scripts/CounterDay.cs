@@ -36,11 +36,11 @@ public class CounterDay : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        CountDay = SaveDataImpl.instance.LoadSaveCloudInt();
     }
 
     private void OnEnable()
     {
+        YandexGame.GetDataEvent += Load;
         YandexGame.RewardVideoEvent += StartAds;
         WinChecker.WinCheck += EndDays;
     }
@@ -57,36 +57,45 @@ public class CounterDay : MonoBehaviour
     }
 
     void Start()
-    {
-        //CountDay = SaveDataImpl.instance.LoadSaveCloudInt();
-        Counter.instance.IsAddCount += ClickDay;       
+    {  
+        Counter.instance.IsAddCount += ClickDay;
     }
 
     
 
     private void OnDestroy()
     {
+        YandexGame.GetDataEvent -= Load;
         Counter.instance.IsAddCount -= ClickDay;
         YandexGame.RewardVideoEvent -= StartAds;
         WinChecker.WinCheck -= EndDays;
     }
-    
+
+    private void Load()
+    {
+        CountDay = SaveDataImpl.instance.LoadSaveCloudInt();
+    }
+
     /// <summary>
     /// Клик на действие дня
     /// </summary>
     private void ClickDay()
     {
-        clickDay += 1;
-        
-        if (clickDay == moddingDay)
+        if (!IsGameEnd)
         {
-            UpdateDay();
-            clickDay = 0;
-            if (CountDay >= MaxDay)
+            clickDay += 1;
+            if (clickDay == moddingDay)
             {
-                IsGameEnd = true;
+                UpdateDay();
+                clickDay = 0;
+                if (CountDay >= MaxDay)
+                {
+                    EndDays();
+                }
             }
         }
+        
+        
     }
 
     /// <summary>
@@ -94,22 +103,25 @@ public class CounterDay : MonoBehaviour
     /// </summary>
     private void UpdateDay()
     {
-        CountDay++;
-        if (isAds)
-        {
-            curAdsDays--;
-            if (curAdsDays == 0)
-            {
-                isAds = false;
-                EndAdsDays?.Invoke();
-            }
-        }
-        EventUpdateDay?.Invoke(CountDay);
         if (CountDay >= MaxDay)
         {
             EndDays();
         }
-        SaveDataImpl.instance.Save(CountDay);
+        else
+        {
+            CountDay++;
+            if (isAds)
+            {
+                curAdsDays--;
+                if (curAdsDays == 0)
+                {
+                    isAds = false;
+                    EndAdsDays?.Invoke();
+                }
+            }
+            SaveDataImpl.instance.Save(CountDay);
+            EventUpdateDay?.Invoke(CountDay);
+        }
     }
 
     /// <summary>
@@ -118,6 +130,6 @@ public class CounterDay : MonoBehaviour
     private void EndDays()
     {
         IsGameEnd = true;
-        IsEndDays?.Invoke();
+        IsEndDays?.Invoke();       
     }
 }

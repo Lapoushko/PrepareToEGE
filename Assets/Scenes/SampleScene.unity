@@ -12555,32 +12555,8 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
-  - name: MusicBackground2
-    clip: {fileID: 8300000, guid: e17eb874ef32c1945b7aa165164a8b7e, type: 3}
-    volume: 0.6
-    pitch: 1
-    loop: 1
-    source: {fileID: 0}
   - name: MusicBackground3
     clip: {fileID: 8300000, guid: feb4677bed7c73b4ea14f77569dab333, type: 3}
-    volume: 0.6
-    pitch: 1
-    loop: 1
-    source: {fileID: 0}
-  - name: MusicBackground4
-    clip: {fileID: 8300000, guid: add707478eb946f42ad27fe9499c2ca1, type: 3}
-    volume: 0.6
-    pitch: 1
-    loop: 1
-    source: {fileID: 0}
-  - name: MusicBackground5
-    clip: {fileID: 8300000, guid: f3ee1a1312fec124788ae7ac752587cb, type: 3}
-    volume: 0.6
-    pitch: 1
-    loop: 1
-    source: {fileID: 0}
-  - name: MusicBackground6
-    clip: {fileID: 8300000, guid: cd1035904226cd04097e9f035812aba5, type: 3}
     volume: 0.6
     pitch: 1
     loop: 1
@@ -12596,12 +12572,6 @@ MonoBehaviour:
     volume: 0.6
     pitch: 1
     loop: 1
-    source: {fileID: 0}
-  - name: Click1
-    clip: {fileID: 8300000, guid: 19f89c6e740e7447f9e12a8310d3e973, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
     source: {fileID: 0}
   - name: Click2
     clip: {fileID: 8300000, guid: 724131bc8a7f34041bb9f1701f0cb58d, type: 3}
@@ -12621,18 +12591,6 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: Click5
-    clip: {fileID: 8300000, guid: cf6c0e7fbef9449c98a0cdb5ea0c4d9f, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Click6
-    clip: {fileID: 8300000, guid: 130a177e727814a2ea78a886ab72213d, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
   - name: Click7
     clip: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
     volume: 1
@@ -12641,12 +12599,6 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Click8
     clip: {fileID: 8300000, guid: 7e9ee6dc04a5d40d1a5dfc4beb9865e7, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Click9
-    clip: {fileID: 8300000, guid: 79e6baad2fd414b82a6d49ce1568d2e5, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -12671,12 +12623,6 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Lose
     clip: {fileID: 8300000, guid: 5fdb13d3756c84fecac96f5a2d124370, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Open
-    clip: {fileID: 8300000, guid: 7bd6b897eb5ca4b7d88a205c4a51640c, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -12712,22 +12658,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musics:
   - MusicBackground1
-  - MusicBackground2
   - MusicBackground3
-  - MusicBackground4
-  - MusicBackground5
-  - MusicBackground6
   - MusicBackground7
+  - MusicBackground8
   clicks:
-  - Click1
   - Click2
   - Click3
   - Click4
-  - Click5
-  - Click6
   - Click7
   - Click8
-  - Click9
   swipes:
   - Swipe1
   - Swipe2
@@ -37033,8 +36972,8 @@ RectTransform:
   m_Children:
   - {fileID: 164855864}
   - {fileID: 1892066610}
-  - {fileID: 1675603762}
   - {fileID: 544721881}
+  - {fileID: 1675603762}
   m_Father: {fileID: 2105561804}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -65755,10 +65694,10 @@ RectTransform:
   - {fileID: 1741708312}
   - {fileID: 2037116213}
   - {fileID: 1827706924}
-  - {fileID: 1150584056}
   - {fileID: 542490905}
-  - {fileID: 86477870}
   - {fileID: 923739919}
+  - {fileID: 1150584056}
+  - {fileID: 86477870}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

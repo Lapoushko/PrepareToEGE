@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using YG;
 
@@ -12,7 +10,7 @@ public class Counter : MonoBehaviour
 {
     public static Counter instance;
 
-    private Dictionary<string, StateCourse> courseDict;
+    private Dictionary<string, StateCourse> courseDict = new Dictionary<string, StateCourse>();
     private string nameCourse = "Math";
 
     public event Action<string> CourseChanged;
@@ -30,8 +28,27 @@ public class Counter : MonoBehaviour
         {
             Destroy(gameObject);
             return;
-        }
-        courseDict = new Dictionary<string, StateCourse> ();
+        }      
+    }
+
+    private void OnEnable()
+    {
+        YandexGame.GetDataEvent += Load;
+    }
+
+    private void OnDisable()
+    {
+        YandexGame.GetDataEvent -= Load;
+    }
+
+    private void Load()
+    {
+        courseDict = new Dictionary<string, StateCourse>()
+        {
+            [NamesCourses.Math] = SaveDataImpl.instance.LoadSaveCloudDict(NamesCourses.Math),
+            [NamesCourses.Russian] = SaveDataImpl.instance.LoadSaveCloudDict(NamesCourses.Russian),
+            [NamesCourses.Info] = SaveDataImpl.instance.LoadSaveCloudDict(NamesCourses.Info)
+        };
     }
 
     /// <summary>
@@ -41,7 +58,6 @@ public class Counter : MonoBehaviour
     public void AddCount(StateCourse addState)
     {
         CheckExistCourse(nameCourse);
-
         float stamina = new CalculatorCoef.CalculateStamina().GetCoef(
             courseDict[nameCourse],
             courseDict[nameCourse].Stamina,
@@ -66,7 +82,7 @@ public class Counter : MonoBehaviour
         IsAddCountDictionary?.Invoke(courseDict);
         IsAddCount?.Invoke();
         CourseChanged?.Invoke(nameCourse);
-        SaveDataImpl.instance.Save(courseDict);
+        SaveDataImpl.instance.Save(courseDict[nameCourse]);
     }
     /// <summary>
     /// Смена курса
@@ -106,7 +122,7 @@ public class Counter : MonoBehaviour
     {
         if (!courseDict.ContainsKey(name))
         {
-            courseDict[name] = new StateCourse(false,name,50, 20, 0);
+            courseDict[name] = SaveDataImpl.instance.LoadSaveCloudDict(name);
         }
     }
 }

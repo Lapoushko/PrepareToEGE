@@ -18,8 +18,19 @@ namespace YG
         public string newPlayerName = "Hello!";
         public bool[] openLevels = new bool[3];
 
-        public int courseDict;
-        public int countDay;
+        public float mathDataStamina = 50;
+        public float mathDataMotivation = 20;
+        public float mathDataProgress = 0;
+
+        public float russianDataStamina = 50;
+        public float russianDataMotivation = 20;
+        public float russianDataProgress = 0;
+
+        public float infoDataStamina = 50;
+        public float infoDataMotivation = 20;
+        public float infoDataProgress = 0;
+
+        public int countDay = 0;
         public float maxScore;
 
         // Ваши сохранения

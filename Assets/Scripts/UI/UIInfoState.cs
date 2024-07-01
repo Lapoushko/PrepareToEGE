@@ -32,7 +32,6 @@ public class UIInfoState : MonoBehaviour
     private void UpdateUI(string name)
     {
         StateCourse course = Counter.instance.GetCourse(name);
-
         staminaImage.fillAmount = GetPercent(course.Stamina);
         motivationImage.fillAmount = GetPercent(course.Motivation);
         progressImage.fillAmount = GetPercent(course.Progress);

@@ -47,17 +47,13 @@ public class UIEndGame : MonoBehaviour
         {
             sum += course.Value.Progress;
         }
-
         panelWin.SetActive(true);
-
         if (sum >= winnerSum) 
         {
             WinGame?.Invoke(true);
             panelWin.GetComponent<Image>().sprite = winImage;
             var score = (CounterDay.instance.MaxDay - CounterDay.instance.CountDay) * 2;
-
-            SaveDataImpl.instance.Save(score);
-
+            SaveDataImpl.instance.Save(sum);
             spendDays.SetActive(true);
             spendDays.GetComponent<TMP_Text>().text = "Потрачено дней: " + CounterDay.instance.CountDay.ToString();
 
@@ -69,13 +65,15 @@ public class UIEndGame : MonoBehaviour
             WinGame?.Invoke(false);          
             panelWin.GetComponent<Image>().sprite = loseImage;
         }
+        SaveDataImpl.instance.DeleteData();
         ResultBar();
     }
+
     /// <summary>
     /// Рестарт игры
     /// </summary>
     public void OnClickRestart()
-    {
+    { 
         SaveDataImpl.instance.DeleteData();
         SceneManager.LoadScene(0);
     }

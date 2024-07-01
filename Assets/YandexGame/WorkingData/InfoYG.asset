@@ -39,7 +39,7 @@ MonoBehaviour:
     objectName: YandexGame
     methodName: _SaveProgress
   leaderboardEnable: 1
-  saveScoreAnonymousPlayers: 1
+  saveScoreAnonymousPlayers: 0
   leaderboardSimulation:
   - technoName: advanced
     entries: 'Test LeaderBoard
